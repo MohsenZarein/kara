@@ -14,21 +14,25 @@
 ```bash
   $ pip install -r requirements.txt
   ```
-4. apply migrations for django defualt models
+4. install and config mongodb depends on your system
+
+5. apply migrations for django defualt models
   ```bash
   $ python manage.py migrate
   ```
-5. run development server
+6. install and config rabbitmq as message broker for the celery app
+
+7. run development server
 
   ```bash
   $ python manage.py runserver
   ```
-6. install and config rabbitmq as message broker for the celery app
 
-7. start celery worker (in root directory of projetc)
+8. start celery workers (in root directory of projetc) to run the tasks in background
 ```bash
   $ celery -A app worker
   ```
+  * As soon as celery workers start, a job for getting trade data from binance websocket will start and run in background
 
 
 
