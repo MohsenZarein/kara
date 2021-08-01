@@ -1,0 +1,18 @@
+# Environments
+.venv
+./.venv
+
+
+# Production
+app/local_settings.py
+local_settings.py
+
+db.sqlite3
+db.sqlite3-journal
+*.log
+*.pot
+*.pyc
+__pycache__/
+/media
+
+
