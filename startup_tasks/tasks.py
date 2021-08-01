@@ -2,14 +2,18 @@ from celery import shared_task
 import websocket, json
 from pymongo import MongoClient
 from datetime import datetime
+from django.conf import settings
+from time import sleep
 
 
 @shared_task
 def get_trade_stream_data():
 
     client = MongoClient(
-        host='localhost',
-        port=27017
+        host=settings.MONGO_HOST,
+        port=settings.MONGO_PORT,
+        username=settings.MONGO_USERNAME,
+        password=settings.MONGO_PASSWORD
     )
     db = client['finance']
     trades = db.trade_stream
@@ -26,6 +30,7 @@ def get_trade_stream_data():
             }
         )
         trades.insert_one(d)
+        sleep(1)
 
 
     def on_error(wsapp, err):
